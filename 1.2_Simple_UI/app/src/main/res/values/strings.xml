@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Simple UI</string>
+    <string name="android_icon_cd">Android icon</string>
+    <string name="android_icon_content_description">Android icon in white</string>
+    <string name="gretting_message">Hey man how are you</string>
+    <string name="my_long_text">A story within a story, also referred to as an embedded narrative,
+        is a literary device in which a character within a story becomes the narrator of a second story
+        (within the first one).[1] Multiple layers of stories within stories are sometimes called nested stories.
+        A play may have a brief play within it, such as Shakespeares play Hamlet; a film may show the characters watching a short film;
+        or a novel may contain a short story within the novel. A story within a story can be used in all types of narration: novels, short stories, plays,
+        television programs, films, poems, songs, and philosophical essays.The inner stories are told either simply to add entertainment or more usually to
+        act as an example to the other characters. In either case, the inner story often has a symbolic and psychological significance for the characters in
+        the outer story. There is often some parallel between the two stories, and the fiction of the inner story is used to reveal the truth in the outer story.
+        Often the stories within a story are used to satirize views, not only in the outer story, but also in the real world. When a story is told within another instead of being told as part of the plot, it allows the author to play on the readers perceptions of the characters—the motives and the reliability of the storyteller are automatically in question.Stories within a story may disclose the background of characters or events, tell of myths and legends that influence the plot, or even seem to be extraneous diversions from the plot. In some cases, the story within a story is involved in the action of the plot of the outer story. In others, the inner story is independent, so that it can either be skipped over or be read separately, although many subtle connections may be lost. Sometimes, the inner story serves as an outlet for discarded ideas that the author deemed to be of too much merit to leave out completely, somewhat analogous to the inclusion of deleted scenes with home video releases of films. Often there is more than one level of internal stories,
+        leading to deeply-nested fiction. Mise en abyme is the French term for a similar literary device (also referring to the practice in heraldry of placing the image of a small shield on a larger shield).
+    Multiple layers of stories within stories are sometimes called nested stories.
+        A play may have a brief play within it, such as Shakespeares play Hamlet; a film may show the characters watching a short film;
+        or a novel may contain a short story within the novel. A story within a story can be used in all types of narration: novels, short stories, plays,
+        television programs, films, poems, songs, and philosophical essays.The inner stories are told either simply to add entertainment or more usually to
+        act as an example to the other characters. In either case, the inner story often has a symbolic and psychological significance for the characters in
+        the outer story. There is often some parallel between the two stories, and the fiction of the inner story is used to reveal the truth in the outer story.
+        Often the stories within a story are used to satirize views, not only in the outer story, but also in the real world. When a story is told within another instead of being told as part of the plot, it allows the author to play on the readers perceptions of the characters—the motives and the reliability of the storyteller are automatically in question.Stories within a story may disclose the background of characters or events, tell of myths and legends that influence the plot, or even seem to be extraneous diversions from the plot. In some cases, the story within a story is involved in the action of the plot of the outer story. In others, the inner story is independent, so that it can either be skipped over or be read separately, although many subtle connections may be lost. Sometimes, the inner story serves as an outlet for discarded ideas that the author deemed to be of too much merit to leave out completely, somewhat analogous to the inclusion of deleted scenes with home video releases of films. Often there is more than one level of internal stories,
+        leading to deeply-nested fiction. Mise en abyme is the French term for a similar literary
+    </string>
+</resources>

@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">4.6 Animals with Tabs</string>
+    <string-array name="animals_english">
+        <item>Dog</item>
+        <item>Cat</item>
+        <item>Cow</item>
+        <item>Horse</item>
+        <item>Bird</item>
+        <item>Mice</item>
+        <item>Pig</item>
+        <item>Sheep</item>
+        <item>Bunny</item>
+        <item>Monkey</item>
+    </string-array>
+
+    <string-array name="pictures">
+        <item>picture0</item>
+        <item>picture1</item>
+        <item>picture2</item>
+        <item>picture3</item>
+        <item>picture4</item>
+        <item>picture5</item>
+        <item>picture6</item>
+        <item>picture7</item>
+        <item>picture8</item>
+        <item>picture9</item>
+    </string-array>
+</resources>
