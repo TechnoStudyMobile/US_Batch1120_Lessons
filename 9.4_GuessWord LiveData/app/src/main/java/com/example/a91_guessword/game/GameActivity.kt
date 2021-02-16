@@ -3,6 +3,7 @@ package com.example.a91_guessword.game
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.a91_guessword.R
@@ -27,8 +28,6 @@ class GameActivity : AppCompatActivity() {
         button_skip.setOnClickListener {
             gameViewModel.skip()
         }
-
-
 
         //Observing LiveData
         gameViewModel.wordLiveData.observe(this, Observer {

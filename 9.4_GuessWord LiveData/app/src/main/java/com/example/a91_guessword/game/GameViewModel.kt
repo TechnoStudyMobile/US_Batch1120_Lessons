@@ -1,7 +1,7 @@
 package com.example.a91_guessword.game
 
 import android.util.Log
-import android.widget.Button
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.a91_guessword.LOG_TAG
@@ -11,10 +11,9 @@ class GameViewModel: ViewModel() {
     var score = 0
         private set
 
-    val wordLiveData = MutableLiveData<String?>()
-    val isCholateLiveData = MutableLiveData<Boolean>()
-    val isCreamLiveData = MutableLiveData<Boolean>()
-    val totalCountLiveData = MutableLiveData<Int>()
+    private val _wordLiveData = MutableLiveData<String?>()
+    val wordLiveData: LiveData<String?>
+        get() = _wordLiveData
 
     private var wordList = mutableListOf<String>()
 
@@ -55,17 +54,17 @@ class GameViewModel: ViewModel() {
 
     fun skip() {
         score--
-        wordLiveData.value = getSingleWord()
+        _wordLiveData.value = getSingleWord()
     }
 
     fun next() {
         score++
-        wordLiveData.value = getSingleWord()
+        _wordLiveData.value = getSingleWord()
     }
 
     fun getFirstWord() {
         if (wordList.isNotEmpty())
-            wordLiveData.value = wordList.removeAt(0)
+            _wordLiveData.value = wordList.removeAt(0)
     }
 
     override fun onCleared() {
