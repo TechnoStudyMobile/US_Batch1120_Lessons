@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">9,6_WeatherApplication</string>
+    <string name="day_of_week">Day of Week</string>
+    <string name="forecast">Forecast</string>
+
+    <string name="Zero">0</string>
+    <string name="_0">0°</string>
+
+    <string name="hello_settings_fragment">Hello Settings fragment</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_details_fragment">Hello Details fragment</string>
+    <string name="label_forecast_list_fragment_title">Daily Weather</string>
+</resources>
