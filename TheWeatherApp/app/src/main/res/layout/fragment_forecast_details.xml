@@ -6,6 +6,7 @@
     tools:context=".screen.forecastdetails.ForecastDetailsFragment">
 
     <TextView
+        android:id="@+id/forecast_details_text_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/hello_details_fragment" />
