@@ -1,16 +1,16 @@
 package com.example.a96_weatherapplication.screen.forecastdetails
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.a96_weatherapplication.KEY_DAILY_FORECAST_DETAILS
 import com.example.a96_weatherapplication.R
 import com.example.a96_weatherapplication.model.Forecast
+import com.example.a96_weatherapplication.screen.forecastlist.ForecastListFragmentDirections
 import com.example.a96_weatherapplication.screen.forecastlist.ForecastViewModel
 import kotlinx.android.synthetic.main.fragment_forecast_details.*
 
@@ -21,6 +21,8 @@ class ForecastDetailsFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+
         forecastViewModel = ViewModelProvider(requireActivity()).get(ForecastViewModel::class.java)
     }
 
@@ -38,5 +40,23 @@ class ForecastDetailsFragment : Fragment() {
                 forecast_details_text_view.text = it.forecastList.getOrNull(args.position)?.toString()
             }
         })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.fragment_details_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.settings -> {
+                val direction = ForecastDetailsFragmentDirections.actionForecastDetailsFragmentToSettingsFragment()
+                findNavController().navigate(direction)
+            }
+            R.id.share -> {
+                //TODO: Share the Forecast details as a text
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

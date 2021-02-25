@@ -2,9 +2,7 @@ package com.example.a96_weatherapplication.screen.forecastlist
 
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -30,31 +28,42 @@ class ForecastListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_forecast, container, false)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.fragment_list_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.settings -> {
+                val direction =
+                    ForecastListFragmentDirections.actionForecastListFragmentToSettingsFragment()
+                findNavController().navigate(direction)
+            }
+            R.id.map_location -> {
+                //TODO: Open Google maps with user's location
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         forecastViewModel = ViewModelProvider(requireActivity()).get(ForecastViewModel::class.java)
-
         forecastViewModel.forecastListLiveData.observe(viewLifecycleOwner, Observer {
             createWeatherList(it)
         })
-
         forecastViewModel.fetchForecastInfo()
     }
 
     private fun createWeatherList(forecastResponse: ForecastResponse) {
         val adapter = WeatherAdapter(forecastResponse) { position ->
-            //Navigate
-            //val bundle = Bundle()
-            //bundle.putParcelable(KEY_DAILY_FORECAST_DETAILS, forecastResponse.forecastList[position])
-            //findNavController().navigate(R.id.action_forecastListFragment_to_forecastDetailsFragment, bundle)
-
             val direction = ForecastListFragmentDirections.actionForecastListFragmentToForecastDetailsFragment(position)
             findNavController().navigate(direction)
-
         }
         weather_recycler_view.layoutManager = LinearLayoutManager(context)
         weather_recycler_view.adapter = adapter

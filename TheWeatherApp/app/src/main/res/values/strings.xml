@@ -9,5 +9,10 @@
     <string name="hello_settings_fragment">Hello Settings fragment</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_details_fragment">Hello Details fragment</string>
-    <string name="label_forecast_list_fragment_title">Daily Weather</string>
+    <string name="label_forecast_list_fragment">Daily Weather</string>
+    <string name="settings_menu_title">Settings</string>
+    <string name="your_location_menu_title">Your location</string>
+    <string name="share_menu_title">Share</string>
+    <string name="label_forecast_details_fragment">Forecast Details</string>
+    <string name="label_fragment_settings">Settings</string>
 </resources>
