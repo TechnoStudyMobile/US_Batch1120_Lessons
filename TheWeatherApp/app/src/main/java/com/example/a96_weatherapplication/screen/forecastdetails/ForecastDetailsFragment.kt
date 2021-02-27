@@ -2,16 +2,15 @@ package com.example.a96_weatherapplication.screen.forecastdetails
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.a96_weatherapplication.KEY_DAILY_FORECAST_DETAILS
 import com.example.a96_weatherapplication.R
-import com.example.a96_weatherapplication.model.Forecast
-import com.example.a96_weatherapplication.screen.forecastlist.ForecastListFragmentDirections
 import com.example.a96_weatherapplication.screen.forecastlist.ForecastViewModel
+import com.example.a96_weatherapplication.utils.Prefs
 import kotlinx.android.synthetic.main.fragment_forecast_details.*
 
 class ForecastDetailsFragment : Fragment() {
@@ -40,6 +39,10 @@ class ForecastDetailsFragment : Fragment() {
                 forecast_details_text_view.text = it.forecastList.getOrNull(args.position)?.toString()
             }
         })
+        activity?.let {
+            val value = Prefs.retrieveIsNotificationEnabledSetting(it)
+            Toast.makeText(it, value.toString(), Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
