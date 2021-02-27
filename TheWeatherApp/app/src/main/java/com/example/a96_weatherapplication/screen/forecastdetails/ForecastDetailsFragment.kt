@@ -13,6 +13,7 @@ import com.example.a96_weatherapplication.screen.forecastlist.ForecastViewModel
 import com.example.a96_weatherapplication.utils.Prefs
 import kotlinx.android.synthetic.main.fragment_forecast_details.*
 
+//SharedPreferences.OnSharedPreferenceChangeListener
 class ForecastDetailsFragment : Fragment() {
 
     private val args: ForecastDetailsFragmentArgs by navArgs()
@@ -39,10 +40,6 @@ class ForecastDetailsFragment : Fragment() {
                 forecast_details_text_view.text = it.forecastList.getOrNull(args.position)?.toString()
             }
         })
-        activity?.let {
-            val value = Prefs.retrieveIsNotificationEnabledSetting(it)
-            Toast.makeText(it, value.toString(), Toast.LENGTH_SHORT).show()
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

@@ -1,5 +1,6 @@
 package com.example.a96_weatherapplication.screen.forecastlist
 
+import android.content.SharedPreferences
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -19,12 +20,16 @@ class ForecastViewModel : ViewModel() {
     val forecastListLiveData: LiveData<ForecastResponse>
         get() = _forecastListLiveData
 
-    fun fetchForecastInfo() {
+    fun fetchForecastInfo(isCelsius: Boolean) {
         val forecastService = RetrofitClient.retrofit?.create(ForecastService::class.java)
-        val forecastCall = forecastService?.getForecast("14", "38.123", "-78.543", WEATHER_API_KEY)
+        val units = if (isCelsius) "M" else "I"
+        val forecastCall = forecastService?.getForecast("7", "38.123", "-78.543", units, WEATHER_API_KEY)
 
         forecastCall?.enqueue(object : Callback<ForecastResponse> {
-            override fun onResponse(call: Call<ForecastResponse>, response: Response<ForecastResponse>) {
+            override fun onResponse(
+                call: Call<ForecastResponse>,
+                response: Response<ForecastResponse>
+            ) {
                 Log.d("WeatherApp", response.message() + response.body().toString())
                 val forecastResponse: ForecastResponse? = response.body()
                 _forecastListLiveData.value = forecastResponse

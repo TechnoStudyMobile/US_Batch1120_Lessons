@@ -34,9 +34,9 @@ class ForecastListFragment : Fragment() {
         forecastViewModel.forecastListLiveData.observe(viewLifecycleOwner, Observer {
             createForecastList(it)
         })
-        forecastViewModel.fetchForecastInfo()
         activity?.let {
-            Prefs.setIsNotificationEnabledSetting(it,false)
+            val isCelsius = Prefs.retrieveIsCelsiusSetting(it)
+            forecastViewModel.fetchForecastInfo(isCelsius)
         }
     }
 
@@ -76,5 +76,9 @@ class ForecastListFragment : Fragment() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
     }
 }
