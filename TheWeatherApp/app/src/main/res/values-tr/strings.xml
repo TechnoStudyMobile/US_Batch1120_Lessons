@@ -1,10 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Weather Application</string>
-    <string name="day_of_week">Day of Week</string>
-    <string name="forecast">Forecast</string>
 
-    <string name="Zero" translatable="false">0</string>
-    <string name="_0" translatable="false">0°</string>
+    <string name="app_name">Hava Durumu</string>
+    <string name="day_of_week">Haftanin gunu</string>
+    <string name="forecast">Hava tahmini</string>
 
     <string name="hello_settings_fragment">Hello Settings fragment</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -14,11 +13,12 @@
     <string name="your_location_menu_title">Your location</string>
     <string name="share_menu_title">Share</string>
     <string name="label_forecast_details_fragment">Forecast Details</string>
-    <string name="label_fragment_settings">Settings</string>
-    <string name="weather_notification_setting_title">Weather Notification</string>
-    <string name="unit_setting_title">Unit system</string>
+    <string name="label_fragment_settings">Ayarlar</string>
+    <string name="weather_notification_setting_title">Hava durumu notifikasyon</string>
+    <string name="unit_setting_title">Unit sistemi</string>
     <string name="days_setting_title">Total days in List</string>
     <string name="celsius_subtitle">Celsius</string>
     <string name="fahrenheit_subtitle">Fahrenheit</string>
     <string name="my_settings_title">My settings title</string>
+
 </resources>

@@ -1,6 +1,6 @@
 package com.example.a96_weatherapplication.network
 
-import com.example.a96_weatherapplication.model.ForecastResponse
+import com.example.a96_weatherapplication.model.ForecastContainer
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -14,5 +14,5 @@ interface ForecastService {
                     @Query("lon") lon:String,
                     @Query("units") units:String,
                     @Query("key") key:String,
-    ): Call<ForecastResponse>
+    ): Call<ForecastContainer>
 }

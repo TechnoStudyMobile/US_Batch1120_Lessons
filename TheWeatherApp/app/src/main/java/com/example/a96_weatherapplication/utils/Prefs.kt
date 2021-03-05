@@ -18,29 +18,3 @@ object Prefs {
         editor.apply()
     }
 }
-
-/*
-//Save
-val sharedPref = context?.getSharedPreferences(
-    "com.example.a96_weather.sharedPrefFile",
-    Context.MODE_PRIVATE
-)
-val sharedPref2 = activity?.getPreferences(Context.MODE_PRIVATE)
-
-//Save
-val editor = sharedPref?.edit()
-editor?.putBoolean(IS_METRIC_SETTING_PREF_KEY, false)
-editor?.apply()
-
-//Retrieve
-val value = sharedPref?.getBoolean(IS_METRIC_SETTING_PREF_KEY, IS_METRIC_DEFAULT_SETTINGS_VALUE)
-
-//Remove
-editor?.remove(IS_METRIC_SETTING_PREF_KEY)
-editor?.apply()
-
-//Clear all
-editor?.clear()
-editor?.apply()
-*/
-

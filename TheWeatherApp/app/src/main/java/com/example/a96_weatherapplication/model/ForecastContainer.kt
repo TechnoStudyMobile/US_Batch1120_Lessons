@@ -1,11 +1,19 @@
 package com.example.a96_weatherapplication.model
 
 import android.os.Parcelable
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class ForecastResponse(
+@Entity(tableName = "forecastContainers")
+data class ForecastContainer(
+    @Expose(deserialize = false, serialize = false)
+    @PrimaryKey
+    val id: Int = 0,
     val countryCode: String,
     val cityName: String,
     @SerializedName("data")

@@ -2,18 +2,15 @@ package com.example.a96_weatherapplication.screen.forecastdetails
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.a96_weatherapplication.R
-import com.example.a96_weatherapplication.screen.forecastlist.ForecastViewModel
-import com.example.a96_weatherapplication.utils.Prefs
+import com.example.a96_weatherapplication.screen.ForecastViewModel
 import kotlinx.android.synthetic.main.fragment_forecast_details.*
 
-//SharedPreferences.OnSharedPreferenceChangeListener
 class ForecastDetailsFragment : Fragment() {
 
     private val args: ForecastDetailsFragmentArgs by navArgs()

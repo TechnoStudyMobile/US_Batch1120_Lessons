@@ -1,6 +1,7 @@
 package com.example.a96_weatherapplication.screen.forecastlist
 
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -9,16 +10,18 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a96_weatherapplication.R
-import com.example.a96_weatherapplication.model.ForecastResponse
+import com.example.a96_weatherapplication.model.ForecastContainer
+import com.example.a96_weatherapplication.screen.ForecastViewModel
 import com.example.a96_weatherapplication.screen.adapters.ForecastAdapter
 import com.example.a96_weatherapplication.utils.Prefs
 import kotlinx.android.synthetic.main.fragment_forecast.*
 
 //implement SharedPreferences.OnSharedPreferenceChangeListener
-class ForecastListFragment : Fragment() {
+class ForecastListFragment : Fragment(), SharedPreferences.OnSharedPreferenceChangeListener  {
 
     private lateinit var forecastViewModel: ForecastViewModel
 
+    //TODO: Fix this
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,8 +43,8 @@ class ForecastListFragment : Fragment() {
         }
     }
 
-    private fun createForecastList(forecastResponse: ForecastResponse) {
-        val adapter = ForecastAdapter(forecastResponse) { position ->
+    private fun createForecastList(forecastContainer: ForecastContainer) {
+        val adapter = ForecastAdapter(forecastContainer) { position ->
             val direction = ForecastListFragmentDirections.actionForecastListFragmentToForecastDetailsFragment(position)
             findNavController().navigate(direction)
         }
@@ -51,12 +54,12 @@ class ForecastListFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        //context?.getSharedPreferences("File_name",Context.MODE_PRIVATE)?.unregisterOnSharedPreferenceChangeListener()
+        //activity?.getSharedPreferences(Context.MODE_PRIVATE)?.unregisterOnSharedPreferenceChangeListener()
     }
 
     override fun onPause() {
         super.onPause()
-        //context?.getSharedPreferences("File_name",Context.MODE_PRIVATE)?.unregisterOnSharedPreferenceChangeListener()
+        //activity?.getSharedPreferences(Context.MODE_PRIVATE)?.unregisterOnSharedPreferenceChangeListener()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -80,5 +83,8 @@ class ForecastListFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+    }
+
+    override fun onSharedPreferenceChanged(sharedPrefs: SharedPreferences?, key: String?) {
     }
 }

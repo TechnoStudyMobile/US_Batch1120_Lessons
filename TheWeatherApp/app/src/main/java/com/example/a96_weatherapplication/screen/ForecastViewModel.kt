@@ -1,13 +1,11 @@
-package com.example.a96_weatherapplication.screen.forecastlist
+package com.example.a96_weatherapplication.screen
 
-import android.content.SharedPreferences
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.a96_weatherapplication.WEATHER_API_KEY
-import com.example.a96_weatherapplication.model.ForecastDummy
-import com.example.a96_weatherapplication.model.ForecastResponse
+import com.example.a96_weatherapplication.model.ForecastContainer
 import com.example.a96_weatherapplication.network.ForecastService
 import com.example.a96_weatherapplication.network.RetrofitClient
 import retrofit2.Call
@@ -16,8 +14,8 @@ import retrofit2.Response
 
 class ForecastViewModel : ViewModel() {
 
-    private val _forecastListLiveData = MutableLiveData<ForecastResponse>()
-    val forecastListLiveData: LiveData<ForecastResponse>
+    private val _forecastListLiveData = MutableLiveData<ForecastContainer>()
+    val forecastListLiveData: LiveData<ForecastContainer>
         get() = _forecastListLiveData
 
     fun fetchForecastInfo(isCelsius: Boolean) {
@@ -25,17 +23,17 @@ class ForecastViewModel : ViewModel() {
         val units = if (isCelsius) "M" else "I"
         val forecastCall = forecastService?.getForecast("7", "38.123", "-78.543", units, WEATHER_API_KEY)
 
-        forecastCall?.enqueue(object : Callback<ForecastResponse> {
+        forecastCall?.enqueue(object : Callback<ForecastContainer> {
             override fun onResponse(
-                call: Call<ForecastResponse>,
-                response: Response<ForecastResponse>
+                call: Call<ForecastContainer>,
+                response: Response<ForecastContainer>
             ) {
                 Log.d("WeatherApp", response.message() + response.body().toString())
-                val forecastResponse: ForecastResponse? = response.body()
-                _forecastListLiveData.value = forecastResponse
+                val forecastContainer: ForecastContainer? = response.body()
+                _forecastListLiveData.value = forecastContainer
             }
 
-            override fun onFailure(call: Call<ForecastResponse>, t: Throwable) {
+            override fun onFailure(call: Call<ForecastContainer>, t: Throwable) {
                 Log.d("WeatherApp", t.localizedMessage)
             }
         })

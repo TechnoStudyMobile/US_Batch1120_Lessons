@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="subtitle_text">#ECEBEB</color>
+    <color name="title_text">#F1EFEF</color>
+    <color name="forecast_today_background">#013B36</color>
+</resources>

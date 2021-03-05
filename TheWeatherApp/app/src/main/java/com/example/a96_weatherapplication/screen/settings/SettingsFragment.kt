@@ -62,5 +62,6 @@ class SettingsFragment : Fragment() {
         } else {
             getString(R.string.fahrenheit_subtitle)
         }
+        unit_settings_item.settings_value.textSize = 50f
     }
 }
