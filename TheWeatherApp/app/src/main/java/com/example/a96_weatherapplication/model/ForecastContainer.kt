@@ -3,6 +3,7 @@ package com.example.a96_weatherapplication.model
 import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
@@ -12,14 +13,17 @@ import kotlinx.android.parcel.Parcelize
 @Entity(tableName = "forecastContainers")
 data class ForecastContainer(
     @Expose(deserialize = false, serialize = false)
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = false)
     val id: Int = 0,
+    @SerializedName(value = "country_code")
     val countryCode: String,
+    @SerializedName(value = "city_name")
     val cityName: String,
     @SerializedName("data")
     val forecastList: List<Forecast>,
     val timezone: String,
     val lon: Double,
+    @SerializedName(value = "state_code")
     val stateCode: String,
     val lat: Double
 ) : Parcelable

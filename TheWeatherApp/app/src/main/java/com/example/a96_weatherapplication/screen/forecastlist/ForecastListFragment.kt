@@ -1,7 +1,6 @@
 package com.example.a96_weatherapplication.screen.forecastlist
 
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -12,14 +11,23 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a96_weatherapplication.R
 import com.example.a96_weatherapplication.model.ForecastContainer
 import com.example.a96_weatherapplication.screen.ForecastViewModel
+import com.example.a96_weatherapplication.screen.ForecastViewModelFactory
 import com.example.a96_weatherapplication.screen.adapters.ForecastAdapter
 import com.example.a96_weatherapplication.utils.Prefs
 import kotlinx.android.synthetic.main.fragment_forecast.*
 
-//implement SharedPreferences.OnSharedPreferenceChangeListener
-class ForecastListFragment : Fragment(), SharedPreferences.OnSharedPreferenceChangeListener  {
+class ForecastListFragment : Fragment()  {
 
     private lateinit var forecastViewModel: ForecastViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val factory = ForecastViewModelFactory(requireActivity().application)
+        forecastViewModel = ViewModelProvider(requireActivity(), factory).get(ForecastViewModel::class.java)
+
+        val isCelsius = Prefs.retrieveIsCelsiusSetting(requireActivity())
+        forecastViewModel.getForecastContainer(isCelsius)
+    }
 
     //TODO: Fix this
     override fun onCreateView(
@@ -33,14 +41,9 @@ class ForecastListFragment : Fragment(), SharedPreferences.OnSharedPreferenceCha
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        forecastViewModel = ViewModelProvider(requireActivity()).get(ForecastViewModel::class.java)
         forecastViewModel.forecastListLiveData.observe(viewLifecycleOwner, Observer {
             createForecastList(it)
         })
-        activity?.let {
-            val isCelsius = Prefs.retrieveIsCelsiusSetting(it)
-            forecastViewModel.fetchForecastInfo(isCelsius)
-        }
     }
 
     private fun createForecastList(forecastContainer: ForecastContainer) {
@@ -50,16 +53,6 @@ class ForecastListFragment : Fragment(), SharedPreferences.OnSharedPreferenceCha
         }
         weather_recycler_view.layoutManager = LinearLayoutManager(context)
         weather_recycler_view.adapter = adapter
-    }
-
-    override fun onResume() {
-        super.onResume()
-        //activity?.getSharedPreferences(Context.MODE_PRIVATE)?.unregisterOnSharedPreferenceChangeListener()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        //activity?.getSharedPreferences(Context.MODE_PRIVATE)?.unregisterOnSharedPreferenceChangeListener()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -79,12 +72,5 @@ class ForecastListFragment : Fragment(), SharedPreferences.OnSharedPreferenceCha
             }
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-    }
-
-    override fun onSharedPreferenceChanged(sharedPrefs: SharedPreferences?, key: String?) {
     }
 }

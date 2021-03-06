@@ -1,41 +1,34 @@
 package com.example.a96_weatherapplication.screen
 
-import android.util.Log
+import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.a96_weatherapplication.WEATHER_API_KEY
+import androidx.lifecycle.ViewModelProvider
+import com.example.a96_weatherapplication.database.WeatherDatabase
 import com.example.a96_weatherapplication.model.ForecastContainer
-import com.example.a96_weatherapplication.network.ForecastService
-import com.example.a96_weatherapplication.network.RetrofitClient
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.example.a96_weatherapplication.repository.ForecastContainerRepository
 
-class ForecastViewModel : ViewModel() {
+class ForecastViewModel(private val forecastContainerRepository: ForecastContainerRepository) : ViewModel() {
 
-    private val _forecastListLiveData = MutableLiveData<ForecastContainer>()
+    private val _forecastListLiveData = forecastContainerRepository.forecastListLiveData
     val forecastListLiveData: LiveData<ForecastContainer>
         get() = _forecastListLiveData
 
-    fun fetchForecastInfo(isCelsius: Boolean) {
-        val forecastService = RetrofitClient.retrofit?.create(ForecastService::class.java)
-        val units = if (isCelsius) "M" else "I"
-        val forecastCall = forecastService?.getForecast("7", "38.123", "-78.543", units, WEATHER_API_KEY)
+    fun getForecastContainer(isCelsius: Boolean) {
+        forecastContainerRepository.getForecastContainer(isCelsius)
+    }
 
-        forecastCall?.enqueue(object : Callback<ForecastContainer> {
-            override fun onResponse(
-                call: Call<ForecastContainer>,
-                response: Response<ForecastContainer>
-            ) {
-                Log.d("WeatherApp", response.message() + response.body().toString())
-                val forecastContainer: ForecastContainer? = response.body()
-                _forecastListLiveData.value = forecastContainer
-            }
+}
 
-            override fun onFailure(call: Call<ForecastContainer>, t: Throwable) {
-                Log.d("WeatherApp", t.localizedMessage)
-            }
-        })
+class ForecastViewModelFactory(private val application: Application) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(ForecastViewModel::class.java)) {
+            val dao = WeatherDatabase.getDatabase(application).getForecastContainerDao()
+            val repository = ForecastContainerRepository(dao)
+            @Suppress("UNCHECKED_CAST")
+            return ForecastViewModel(repository) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }

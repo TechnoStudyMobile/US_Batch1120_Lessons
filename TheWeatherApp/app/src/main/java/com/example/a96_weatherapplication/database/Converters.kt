@@ -6,14 +6,6 @@ import com.example.a96_weatherapplication.model.Weather
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
-class WeatherConverter {
-    @TypeConverter
-    fun weatherToString(weather: Weather): String = Gson().toJson(weather)
-
-    @TypeConverter
-    fun stringToWeather(string: String): Weather = Gson().fromJson(string, Weather::class.java)
-}
-
 class ForecastListConverter {
     @TypeConverter
     fun forecastListToString(forecastList: List<Forecast>): String {

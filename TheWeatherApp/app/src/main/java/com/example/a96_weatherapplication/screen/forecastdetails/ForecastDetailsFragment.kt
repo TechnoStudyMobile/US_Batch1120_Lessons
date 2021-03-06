@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.a96_weatherapplication.R
 import com.example.a96_weatherapplication.screen.ForecastViewModel
+import com.example.a96_weatherapplication.screen.ForecastViewModelFactory
 import kotlinx.android.synthetic.main.fragment_forecast_details.*
 
 class ForecastDetailsFragment : Fragment() {
@@ -20,7 +21,8 @@ class ForecastDetailsFragment : Fragment() {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
 
-        forecastViewModel = ViewModelProvider(requireActivity()).get(ForecastViewModel::class.java)
+        val factory = ForecastViewModelFactory(requireActivity().application)
+        forecastViewModel = ViewModelProvider(requireActivity(), factory).get(ForecastViewModel::class.java)
     }
 
     override fun onCreateView(
