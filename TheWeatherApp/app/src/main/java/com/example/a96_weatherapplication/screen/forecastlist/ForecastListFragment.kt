@@ -4,17 +4,19 @@ package com.example.a96_weatherapplication.screen.forecastlist
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a96_weatherapplication.R
+import com.example.a96_weatherapplication.WeatherApp
 import com.example.a96_weatherapplication.model.ForecastContainer
 import com.example.a96_weatherapplication.screen.ForecastViewModel
 import com.example.a96_weatherapplication.screen.ForecastViewModelFactory
 import com.example.a96_weatherapplication.screen.adapters.ForecastAdapter
+import com.example.a96_weatherapplication.utils.NotificationUtil
 import com.example.a96_weatherapplication.utils.Prefs
 import kotlinx.android.synthetic.main.fragment_forecast.*
+import kotlinx.coroutines.launch
 
 class ForecastListFragment : Fragment()  {
 
@@ -42,7 +44,14 @@ class ForecastListFragment : Fragment()  {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         forecastViewModel.forecastListLiveData.observe(viewLifecycleOwner, Observer {
-            createForecastList(it)
+            it?.let {
+                createForecastList(it)
+                //Fire a notification
+                it.forecastList.firstOrNull()?.let { forecast ->
+                    //in-app notification
+                    NotificationUtil.fireTodayForecastNotification(requireContext(), forecast)
+                }
+            }
         })
     }
 

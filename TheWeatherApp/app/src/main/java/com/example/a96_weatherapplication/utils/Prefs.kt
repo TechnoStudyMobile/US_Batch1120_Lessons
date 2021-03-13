@@ -6,6 +6,7 @@ import com.example.a96_weatherapplication.IS_CELSIUS_DEFAULT_SETTINGS_VALUE
 import com.example.a96_weatherapplication.IS_CELSIUS_SETTING_PREF_KEY
 
 object Prefs {
+
     fun retrieveIsCelsiusSetting(activity: Activity): Boolean {
         val sharedPref = activity.getPreferences(Context.MODE_PRIVATE)
         return sharedPref.getBoolean(IS_CELSIUS_SETTING_PREF_KEY, IS_CELSIUS_DEFAULT_SETTINGS_VALUE)
